@@ -39,19 +39,15 @@ def main():
 
       prediction = model.predict(preprocessed_image.reshape(1,-1)) # (1, 784)
       st.markdown(f"La imagen fue clasificada como: {prediction}")
-st.write("El mejor modelo fue un KNeighborsClassifier, este se comparó contra un modelo de DecisionTreeClassifier y resultó siendo el mejor.
-Este clasificador tiene los siguientes hiperparámetros:
-
-n_neighbors=4:
-
-Este hiperparámetro determina la cantidad de vecinos cercanos a tomar en cuenta para la predicción. 
-El modelo como tal considera los 4 puntos de datos más próximos en el espacio de características.
-
-p=3:
-
-Este hiperparámetro se usa para definir la distancia usada para los puntos de datos. 
-El método de GridSearch eligió la distancia de Minkowski como la mejor distancia, por encima de la distancia euclídea y la de Manhattan.")
-
+      
+            st.write("El mejor modelo fue un KNeighborsClassifier, este se comparó contra un modelo de DecisionTreeClassifier y resultó siendo el mejor.")
+            st.write("""
+                Este clasificador tiene los siguientes hiperparámetros:
+                - **n_neighbors=4**: Este hiperparámetro determina la cantidad de vecinos cercanos a tomar en cuenta para la predicción. 
+                  El modelo como tal considera los 4 puntos de datos más próximos en el espacio de características.
+                - **p=3**: Este hiperparámetro se usa para definir la distancia usada para los puntos de datos. 
+                  El método de GridSearch eligió la distancia de Minkowski como la mejor distancia, por encima de la distancia euclídea y la de Manhattan.
+            """)
 
 if __name__ == "__main__":
   main()
