@@ -75,6 +75,14 @@ def main():
 
             except Exception as e:
                 st.error(f"Error al realizar la predicción: {e}")
+                
+st.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
+st.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el KernelRidge.")
+st.write("""
+            Este clasificador tiene los siguientes hiperparámetros:
+            - **alpha=0.1**: Es el parámetro de regularización que previene el sobreajuste del modelo. Entre más alto sea menos probabilidad de sobreajuste, aunque también implica que puede tener más dificultad de detectar patrones complejos en la data. En nuestro caso, el modelo tiene un alpha relativamente bajo por lo cual sería un modelo más complejo.
+            - **kernel='rbf'**: Es el tipo de kernel, en este caso es el RBF (radial basis function) el cual genera una función de similitud con base a la distancia de los puntos en el plano de características.
+        """)
 
 if __name__ == "__main__":
     main()
