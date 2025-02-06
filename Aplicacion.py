@@ -40,6 +40,7 @@ def main():
       prediction = model.predict(preprocessed_image.reshape(1,-1)) # (1, 784)
       st.markdown(f"La imagen fue clasificada como: {prediction}")
 
+st.write("hola")
 
 if __name__ == "__main__":
   main()
