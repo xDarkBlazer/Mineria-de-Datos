@@ -3,7 +3,6 @@ import pickle
 import gzip
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 
 def load_model():
     """Carga el modelo desde un archivo comprimido y verifica su integridad."""
@@ -15,19 +14,9 @@ def load_model():
         st.error(f"Error al cargar el modelo: {e}")
         return None
 
-def load_scaler():
-    """Carga el escalador utilizado en el entrenamiento, si existe."""
-    try:
-        with gzip.open('scaler.pkl.gz', 'rb') as f:
-            scaler = pickle.load(f)
-        return scaler
-    except Exception:
-        return None
-
-def make_predictions(model, scaler, data):
-    """Realiza predicciones utilizando el modelo y el escalador."""
-    data_scaled = scaler.transform(data)
-    predictions = model.predict(data_scaled)
+def make_predictions(model, data):
+    """Realiza predicciones utilizando el modelo."""
+    predictions = model.predict(data)
     return predictions
 
 def model_page(model_loader, title):
@@ -43,14 +32,10 @@ def model_page(model_loader, title):
 
             model = model_loader()
             if model is not None:
-                scaler = load_scaler()
-                if scaler is not None:
-                    if st.button("Predecir datos"):
-                        predictions = make_predictions(model, scaler, data)
-                        st.write("Predicciones:")
-                        st.write(predictions)
-                else:
-                    st.error("No se pudo cargar el escalador.")
+                if st.button("Predecir datos"):
+                    predictions = make_predictions(model, data)
+                    st.write("Predicciones:")
+                    st.write(predictions)
             else:
                 st.error("No se pudo cargar el modelo.")
         except Exception as e:
@@ -80,4 +65,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
