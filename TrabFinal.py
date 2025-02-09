@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import gzip
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 def load_model():
