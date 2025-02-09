@@ -27,6 +27,24 @@ def model_page(model_loader, title):
     st.title(title)
     st.write("Carga un Excel para predecir los Retiros.")
 
+    uploaded_file = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
+    if uploaded_file is not None:
+        data = pd.read_excel(uploaded_file)
+        st.write("Datos cargados:")
+        st.write(data)
+
+        model = model_loader()
+        if model is not None:
+            scaler = load_scaler()
+            if scaler is not None:
+                predictions = make_predictions(model, scaler, data)
+                st.write("Predicciones:")
+                st.write(predictions)
+            else:
+                st.error("No se pudo cargar el escalador.")
+        else:
+            st.error("No se pudo cargar el modelo.")
+
 def main():
     st.sidebar.title("Navegación")
     page = st.sidebar.selectbox("Elige un modelo", ["Dense", "RNN", "LSTM", "GRU"])
