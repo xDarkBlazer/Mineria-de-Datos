@@ -33,9 +33,9 @@ def main():
 
     if page == "Dense":
         model_page(load_model, "Predicción de Retiros - Dense")
-    elif page == "RNN"
+    elif page == "RNN":
         model_page(load_model, "Predicción de Retiros - RNN")
-    elif page == "LSTM"
+    elif page == "LSTM":
         model_page(load_model, "Predicción de Retiros - LSTM")
     else:
         model_page(load_model, "Predicción de Retiros - GRU")
