@@ -29,12 +29,16 @@ def model_page(model_loader, title):
 
 def main():
     st.sidebar.title("Navegación")
-    page = st.sidebar.selectbox("Elige una página", ["Modelo A", "Modelo B"])
+    page = st.sidebar.selectbox("Elige una página", ["Dense", "RNN", "LSTM", "GRU"])
 
-    if page == "Modelo A":
-        model_page(load_model, "Predicción de Precios de Viviendas - Modelo A")
+    if page == "Dense":
+        model_page(load_model, "Predicción de Retiros - Dense")
+    elif page == "RNN"
+        model_page(load_model, "Predicción de Retiros - RNN")
+    elif page == "LSTM"
+        model_page(load_model, "Predicción de Retiros - LSTM")
     else:
-        model_page(load_model, "Predicción de Precios de Viviendas - Modelo B")
+        model_page(load_model, "Predicción de Retiros - GRU")
 
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el Kernel")
