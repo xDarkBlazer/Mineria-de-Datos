@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 def load_model():
     """Carga el modelo desde un archivo comprimido y verifica su integridad."""
     try:
-        with gzip.open('model_trained_regressor.pkl.gz', 'rb') as f:
+        with gzip.open('RNN.pkl.gz', 'rb') as f:
             model = pickle.load(f)
         return model
     except Exception as e:
