@@ -25,11 +25,11 @@ def load_scaler():
 
 def model_page(model_loader, title):
     st.title(title)
-    st.write("Introduce las características de la casa para predecir su precio.")
+    st.write("Carga un Excel para predecir los Retiros.")
 
 def main():
     st.sidebar.title("Navegación")
-    page = st.sidebar.selectbox("Elige una página", ["Dense", "RNN", "LSTM", "GRU"])
+    page = st.sidebar.selectbox("Elige un modelo", ["Dense", "RNN", "LSTM", "GRU"])
 
     if page == "Dense":
         model_page(load_model, "Predicción de Retiros - Dense")
