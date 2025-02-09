@@ -4,14 +4,24 @@ import gzip
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
-def load_model():
-    """Carga el modelo desde un archivo comprimido y verifica su integridad."""
+def load_model_a():
+    """Carga el modelo A desde un archivo comprimido y verifica su integridad."""
     try:
         with gzip.open('model_trained_regressor.pkl.gz', 'rb') as f:
             model = pickle.load(f)
         return model
     except Exception as e:
-        st.error(f"Error al cargar el modelo: {e}")
+        st.error(f"Error al cargar el modelo A: {e}")
+        return None
+
+def load_model_b():
+    """Carga el modelo B desde un archivo comprimido y verifica su integridad."""
+    try:
+        with gzip.open('model_trained_regressor.pkl.gz', 'rb') as f:
+            model = pickle.load(f)
+        return model
+    except Exception as e:
+        st.error(f"Error al cargar el modelo B: {e}")
         return None
 
 def load_scaler():
@@ -83,6 +93,15 @@ st.write("""
             - **alpha=0.1**: Es el parámetro de regularización que previene el sobreajuste del modelo. Entre más alto sea menos probabilidad de sobreajuste, aunque también implica que puede tener más dificultad de detectar patrones complejos en la data. En nuestro caso, el modelo tiene un alpha relativamente bajo por lo cual sería un modelo más complejo.
             - **kernel='rbf'**: Es el tipo de kernel, en este caso es el RBF (radial basis function) el cual genera una función de similitud con base a la distancia de los puntos en el plano de características.
         """)
+
+def main():
+    st.sidebar.title("Navegación")
+    page = st.sidebar.selectbox("Elige una página", ["Modelo A", "Modelo B"])
+
+    if page == "Modelo A":
+        model_page(load_model_a, "Predicción de Precios de Viviendas - Modelo A")
+    else:
+        model_page(load_model_b, "Predicción de Precios de Viviendas - Modelo B")
 
 if __name__ == "__main__":
     main()
