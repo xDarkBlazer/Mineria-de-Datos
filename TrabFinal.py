@@ -51,7 +51,7 @@ def main():
         model_page(load_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_model, "Predicción de Retiros - RNN")
-        image = Image.open('C:/Users/57311/OneDrive/Documentos/Esp Estadística/Segundo Semestre/Minería de Datos/RNN.png')  # Cambia esta ruta por la correcta
+        image = Image.open('RNN.png') 
         st.image(image, caption='Esta es tu imagen.')
     elif page == "LSTM":
         model_page(load_model, "Predicción de Retiros - LSTM")
