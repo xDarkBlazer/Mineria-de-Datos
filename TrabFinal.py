@@ -53,7 +53,7 @@ def display_image_from_url(url, caption):
 
 def main():
     st.sidebar.title("Navegación")
-    page = st.sidebar.selectbox("Elige un modelo", ["Modelo A", "Modelo B", "Dense", "RNN", "LSTM", "GRU"])
+    page = st.sidebar.selectbox("Elige un modelo", ["Descripción del Problema", "Descriptiva de los Datos", "Dense", "RNN", "LSTM", "GRU"])
 
     if page == "Descripción del Problema":
         model_page(load_model, "Descripción del Problema")
