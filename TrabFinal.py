@@ -1,7 +1,9 @@
 import streamlit as st
 import pickle
 import gzip
+from PIL import Image
 import requests
+from io import BytesIO
 import numpy as np
 import pandas as pd
 
