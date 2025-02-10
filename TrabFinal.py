@@ -51,8 +51,7 @@ def main():
         model_page(load_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_model, "Predicción de Retiros - RNN")
-        image = Image.open('RNN.png') 
-        st.image(image, caption='Esta es tu imagen.')
+        display_image_from_url('https://github.com/tu_usuario/tu_repositorio/raw/main/RNN.png', 'Esta es tu imagen.')
     elif page == "LSTM":
         model_page(load_model, "Predicción de Retiros - LSTM")
     elif page == "Modelo A":
