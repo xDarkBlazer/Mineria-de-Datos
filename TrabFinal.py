@@ -43,6 +43,11 @@ def model_page(model_loader, title):
     else:
         st.warning("Por favor, carga un archivo Excel para continuar.")
 
+def display_image_from_url(url, caption):
+    response = requests.get(url)
+    image = Image.open(BytesIO(response.content))
+    st.image(image, caption=caption)
+
 def main():
     st.sidebar.title("Navegación")
     page = st.sidebar.selectbox("Elige un modelo", ["Dense", "RNN", "LSTM", "GRU", "Modelo A", "Modelo B"])
