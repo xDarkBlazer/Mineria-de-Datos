@@ -53,21 +53,20 @@ def display_image_from_url(url, caption):
 
 def main():
     st.sidebar.title("Navegación")
-    page = st.sidebar.selectbox("Elige un modelo", ["Dense", "RNN", "LSTM", "GRU", "Modelo A", "Modelo B"])
+    page = st.sidebar.selectbox("Elige un modelo", ["Modelo A", "Modelo B", "Dense", "RNN", "LSTM", "GRU"])
 
-    if page == "Dense":
+    if page == "Descripción del Problema":
+        model_page(load_model, "Descripción del Problema")
+    elif page == "Descripción de los Datos":
+        model_page(load_model, "Descriptiva de los Datos")
+    elif page == "Dense":
         model_page(load_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_model, "Predicción de Retiros - RNN")
         display_image_from_url('https://github.com/xDarkBlazer/Mineria-de-Datos/raw/main/RNN.png', 'Esta es tu imagen.')
     elif page == "LSTM":
         model_page(load_model, "Predicción de Retiros - LSTM")
-    elif page == "Modelo A":
-        model_page(load_model, "Predicción de Precios de Viviendas - Modelo A")
-    elif page == "Modelo B":
-        model_page(load_model, "Predicción de Precios de Viviendas - Modelo B")
-    else:
-        model_page(load_model, "Predicción de Retiros - GRU")
+    
 
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el Kernel")
