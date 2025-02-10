@@ -57,7 +57,7 @@ def main():
 
     if page == "Descripción del Problema":
         model_page(load_model, "Descripción del Problema")
-    elif page == "Descripción de los Datos":
+    elif page == "Descriptiva de los Datos":
         model_page(load_model, "Descriptiva de los Datos")
     elif page == "Dense":
         model_page(load_model, "Predicción de Retiros - Dense")
