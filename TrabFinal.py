@@ -73,7 +73,7 @@ def model_page(model_loader, title, reshape_data=False):
             st.write(data)
 
             if reshape_data:
-                # Reformatear los datos para asegurar la forma correcta
+                # Reformatear los datos para asegurar la forma correcta solo si reshape_data es True
                 X = data.values.reshape(-1, 30)
             else:
                 X = data.values
@@ -146,7 +146,7 @@ def main():
     elif page == "Descriptiva de los Datos":
         descriptive_page()
     elif page == "Dense":
-        model_page(load_dense_model, "Predicción de Retiros - Dense")
+        model_page(load_dense_model, "Predicción de Retiros - Dense", reshape_data=True)
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
     elif page == "LSTM":
