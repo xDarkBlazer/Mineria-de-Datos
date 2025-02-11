@@ -209,16 +209,19 @@ def main():
         descriptive_page()
     elif page == "Dense":
         model_page(load_dense_model, "Predicción de Retiros - Dense", reshape_data=True)
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 5, 'epochs': 6, 'num_units': 160, 'optimizer': 'rmsprop', 'activation': 'relu', 'batch_size': 96, 'learning_rate': 0.00014794817129905585}") 
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 3, 'epochs': 5, 'num_units': 80, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 80, 'learning_rate': 0.0001645624539394657}") 
     elif page == "LSTM":
         model_page(load_lstm_model, "Predicción de Retiros - LSTM")
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 5, 'num_units': 144, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 56, 'learning_rate': 0.00022336904639532176}") 
     elif page == "GRU":
         model_page(load_gru_model, "Predicción de Retiros - GRU")
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}") 
+
         
 st.sidebar.write("### Notas:") 
-st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.") 
-st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
 
 if __name__ == "__main__":
