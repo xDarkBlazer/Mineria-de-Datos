@@ -206,7 +206,7 @@ def main():
     if page == "Descripción del Problema":
         st.sidebar.write("Por favor elija un modelo para predecir los retiros bancarios.")
         imagen_path2 = "Captura (1).PNG"  # Reemplazar con la ruta correcta si es necesario
-        st.image(imagen_path2, width=150)
+        st.image(imagen_path2, width=550)
     
     elif page == "Descriptiva de los Datos":
         descriptive_page()
