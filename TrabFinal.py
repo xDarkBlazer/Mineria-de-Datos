@@ -216,10 +216,17 @@ def main():
     elif page == "GRU":
         model_page(load_gru_model, "Predicción de Retiros - GRU")
         
-    st.sidebar.write("### Notas:")
-    st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
-    st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.")
-    st.sidebar.write("Edwin Armando Torres Sánchez.")
+st.sidebar.markdown("""
+    <style>
+    .custom-text {
+        color: white;
+    }
+    </style>
+    ### Notas:
+    <div class="custom-text">El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.</div>
+    <div class="custom-text">Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.</div>
+    <div class="custom-text">Edwin Armando Torres Sánchez.</div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
