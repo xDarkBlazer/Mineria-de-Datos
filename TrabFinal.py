@@ -7,6 +7,7 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 def load_model():
     """Carga el modelo desde un archivo comprimido y verifica su integridad."""
@@ -57,6 +58,17 @@ def model_page(model_loader, title):
                     plt.ylabel("Retiro (Escalado)")
                     plt.xlim(0, 80)
                     st.pyplot(plt)
+                    
+                    # Calculate and display metrics
+                    mae = mean_absolute_error(y_test, y_pred)
+                    mse = mean_squared_error(y_test, y_pred)
+
+                    st.write(f"**Mean Absolute Error (MAE):** {mae}")
+                    st.write(f"**Mean Squared Error (MSE):** {mse}")
+
+                    # Display model hyperparameters
+                    st.write("**Hiperparámetros del modelo:**")
+                    st.write(model.get_params())
             else:
                 st.error("No se pudo cargar el modelo.")
         except Exception as e:
