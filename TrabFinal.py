@@ -99,11 +99,9 @@ def main():
         model_page(load_rnn_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
-        display_image_from_url('https://github.com/xDarkBlazer/Mineria-de-Datos/raw/main/RNN.png', 'Esta es tu imagen.')
     elif page == "LSTM":
         model_page(load_lstm_model, "Predicción de Retiros - LSTM")
-        display_image_from_url('https://github.com/xDarkBlazer/Mineria-de-Datos/raw/main/LSTM.png', 'Esta es tu imagen.')
-
+        
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el Kernel")
 
