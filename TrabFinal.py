@@ -10,11 +10,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+# Custom CSS to change the color of the sidebar
 st.markdown(
     """
     <style>
-    .css-1d391kg {
-        background-color: rgb(148, 18, 59) !important;
+    [data-testid="stSidebar"] {
+        background-color: rgb(148, 18, 59);
     }
     </style>
     """,
@@ -217,7 +218,6 @@ def main():
     st.sidebar.write("### Notas:")
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.")
-
     st.sidebar.write("### Créditos:")
     st.sidebar.write("Desarrollado por el equipo de Data Science.")
 
