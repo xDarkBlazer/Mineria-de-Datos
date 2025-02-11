@@ -228,8 +228,14 @@ def main():
         model_page(load_gru_model , "Predicción de Retiros - GRU")
 
     elif page == "Conclusiones":
-        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
-        model_page(load_gru_model , "Predicción de Retiros - GRU")
+        imagen_path3 = "DENSED.PNG"  # Reemplazar con la ruta correcta si es necesario
+        st.image(imagen_path3, width=150)
+        imagen_path4 = "RNND.PNG"  # Reemplazar con la ruta correcta si es necesario
+        st.image(imagen_path4, width=150)
+        imagen_path5 = "LSTMD.PNG"  # Reemplazar con la ruta correcta si es necesario
+        st.image(imagen_path5, width=150)
+        imagen_path6 = "GRUD.PNG"  # Reemplazar con la ruta correcta si es necesario
+        st.image(imagen_path6, width=150)
         
 st.sidebar.write("### Minería de Datos:") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
