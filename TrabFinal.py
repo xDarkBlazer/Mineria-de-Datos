@@ -146,7 +146,7 @@ def main():
     elif page == "Descriptiva de los Datos":
         descriptive_page()
     elif page == "Dense":
-        model_page(load_dense_model, "Predicción de Retiros - Dense", reshape_data=True)
+        model_page(load_dense_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
     elif page == "LSTM":
