@@ -10,7 +10,16 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-
+st.markdown(
+    """
+    <style>
+    .css-1d391kg {
+        background-color: rgb(148, 18, 59) !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Encabezado principal
 st.set_page_config(page_title="Predicción de Retiros Bancarios", page_icon="🏦", layout="wide")
