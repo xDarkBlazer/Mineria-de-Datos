@@ -34,6 +34,24 @@ def make_predictions(model, data):
     predictions = model.predict(data)
     return predictions
 
+def describe_data(data):
+    st.write("Resumen Estadístico de los Datos:")
+    st.write(data.describe())
+
+    st.write("Histograma de los Datos:")
+    for column in data.columns:
+        plt.figure()
+        data[column].hist(bins=20)
+        plt.title(f"Histograma de {column}")
+        st.pyplot(plt)
+
+    st.write("Boxplot de los Datos:")
+    plt.figure()
+    data.boxplot()
+    plt.title("Boxplot de los Datos")
+    st.pyplot(plt)
+
+
 def model_page(model_loader, title):
     st.title(title)
     st.write("Carga un Excel para predecir los Retiros.")
