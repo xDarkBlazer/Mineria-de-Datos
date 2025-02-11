@@ -223,7 +223,7 @@ def main():
     
     elif page == "GRU":
         st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
-        model_page(load_gru_model, 
+        model_page(load_gru_model , "Predicción de Retiros - GRU")
         
 st.sidebar.write("### Notas:") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
