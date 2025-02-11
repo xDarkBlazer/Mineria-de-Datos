@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-st.set_page_config(page_title="Predicción de Retiros Bancarios", page_icon="🏦", layout="wide"
+st.set_page_config(page_title="Predicción de Retiros Bancarios", page_icon="🏦", layout="wide")
 # Custom CSS to change the color of the sidebar
 st.markdown(
     """
