@@ -17,7 +17,7 @@ st.markdown("### Un análisis detallado con modelos de Machine Learning")
 
 # Añadir imagen como encabezado en todas las páginas
 imagen_path = "UNAL-Manizales.png"  # Reemplazar con la ruta correcta si es necesario
-st.image(imagen_path, use_column_width=True)
+st.image(imagen_path, use_container_width=True)
 
 # Funciones para cargar los modelos
 def load_rnn_model():
