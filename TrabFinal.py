@@ -29,6 +29,16 @@ def load_lstm_model():
         st.error(f"Error al cargar el modelo LSTM: {e}")
         return None
 
+def load_gru_model():
+    """Carga el modelo LSTM desde un archivo comprimido y verifica su integridad."""
+    try:
+        with gzip.open('GRU.pkl.gz', 'rb') as f:
+            model = pickle.load(f)
+        return model
+    except Exception as e:
+        st.error(f"Error al cargar el modelo LSTM: {e}")
+        return None
+
 def load_dense_model():
     """Carga el modelo Dense desde un archivo comprimido y verifica su integridad."""
     try:
@@ -154,6 +164,8 @@ def main():
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
     elif page == "LSTM":
         model_page(load_lstm_model, "Predicción de Retiros - LSTM")
+    elif page == "GRU":
+        model_page(load_gru_model, "Predicción de Retiros - GRU")
         
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el Kernel")
