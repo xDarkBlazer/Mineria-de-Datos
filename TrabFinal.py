@@ -29,7 +29,7 @@ st.markdown(
 imagen_path = "UNAL-Manizales.png"  # Reemplazar con la ruta correcta si es necesario
 st.image(imagen_path, width=150)
 st.title("📊 Predicción de Retiros Bancarios")
-st.markdown("### Un análisis detallado con modelos de Machine Learning")
+st.markdown("### Un análisis detallado con modelos de Deep Learning")
 
 # Funciones para cargar los modelos
 def load_rnn_model():
@@ -225,7 +225,7 @@ def main():
         st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
         model_page(load_gru_model , "Predicción de Retiros - GRU")
         
-st.sidebar.write("### Notas:") 
+st.sidebar.write("### Minería de Datos:") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
 
 if __name__ == "__main__":
