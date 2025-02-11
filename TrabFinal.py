@@ -10,6 +10,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+# Encabezado principal
+st.set_page_config(page_title="Predicción de Retiros Bancarios", page_icon="🏦", layout="wide")
+st.title("📊 Predicción de Retiros Bancarios")
+st.markdown("### Un análisis detallado con modelos de Machine Learning")
+
+# Funciones para cargar los modelos
 def load_rnn_model():
     """Carga el modelo RNN desde un archivo comprimido y verifica su integridad."""
     try:
@@ -56,38 +62,38 @@ def make_predictions(model, data):
     return predictions
 
 def describe_data(data):
-    st.write("Resumen Estadístico de los Datos:")
+    st.write("#### Resumen Estadístico de los Datos")
     st.write(data.describe())
 
-    st.write("Histograma de los Datos:")
+    st.write("#### Histograma de los Datos")
     for column in data.columns:
         plt.figure()
         data[column].hist(bins=20)
         plt.title(f"Histograma de {column}")
         st.pyplot(plt)
 
-    st.write("Boxplot de los Datos:")
+    st.write("#### Boxplot de los Datos")
     plt.figure()
     data.boxplot()
     plt.title("Boxplot de los Datos")
     st.pyplot(plt)
     
-    st.write("Gráfico de Violín de los Datos:")
+    st.write("#### Gráfico de Violín de los Datos")
     plt.figure()
     sns.violinplot(data=data)
     plt.title("Gráfico de Violín de los Datos")
     st.pyplot(plt)
 
 def model_page(model_loader, title, reshape_data=False):
-    st.title(title)
-    st.write("Carga un Excel para predecir los Retiros.")
+    st.subheader(f"Modelo: {title}")
+    st.write("Cargue un archivo Excel para predecir los Retiros.")
 
     uploaded_file = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
     if uploaded_file is not None:
         try:
             data = pd.read_excel(uploaded_file)
-            st.write("Datos cargados:")
-            st.write(data)
+            st.write("### Datos Cargados:")
+            st.dataframe(data)
 
             if reshape_data:
                 # Generar ventanas de 30 días solapadas
@@ -103,8 +109,8 @@ def model_page(model_loader, title, reshape_data=False):
                 if st.button("Predecir datos"):
                     # Predicciones sobre los datos de entrenamiento
                     predictions_train = make_predictions(model, X)
-                    st.write("Predicciones (Datos de Entrenamiento):")
-                    st.write(predictions_train)
+                    st.write("#### Predicciones (Datos de Entrenamiento)")
+                    st.dataframe(predictions_train)
 
                     # Plot actual vs predicted (Datos de Entrenamiento)
                     y_test = data.iloc[:len(predictions_train), -1].values
@@ -128,8 +134,8 @@ def model_page(model_loader, title, reshape_data=False):
                         last_window = np.roll(last_window, -1)
                         last_window[0, -1] = next_pred
 
-                    st.write("Predicciones Futuras (t+1 en adelante):")
-                    st.write(future_predictions)
+                    st.write("#### Predicciones Futuras (t+1 en adelante)")
+                    st.dataframe(future_predictions)
 
                     # Plot future predictions
                     plt.figure(figsize=(12, 5))
@@ -146,8 +152,8 @@ def model_page(model_loader, title, reshape_data=False):
                     mae = mean_absolute_error(y_test, predictions_train)
                     mse = mean_squared_error(y_test, predictions_train)
 
-                    st.write(f"**Mean Absolute Error (MAE):** {mae}")
-                    st.write(f"**Mean Squared Error (MSE):** {mse}")
+                    st.write(f"**Mean Absolute Error (MAE):** {mae:.4f}")
+                    st.write(f"**Mean Squared Error (MSE):** {mse:.4f}")
             else:
                 st.error("No se pudo cargar el modelo.")
         except Exception as e:
@@ -156,15 +162,15 @@ def model_page(model_loader, title, reshape_data=False):
         st.warning("Por favor, carga un archivo Excel para continuar.")
 
 def descriptive_page():
-    st.title("Descriptiva de los Datos")
-    st.write("Carga un Excel para ver la descriptiva de los datos.")
+    st.subheader("Descriptiva de los Datos")
+    st.write("Cargue un archivo Excel para ver la descriptiva de los datos.")
 
     uploaded_file = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
     if uploaded_file is not None:
         try:
             data = pd.read_excel(uploaded_file)
-            st.write("Datos cargados:")
-            st.write(data)
+            st.write("### Datos Cargados:")
+            st.dataframe(data)
 
             describe_data(data)
         except Exception as e:
@@ -175,7 +181,7 @@ def descriptive_page():
 def display_image_from_url(url, caption):
     response = requests.get(url)
     image = Image.open(BytesIO(response.content))
-    st.image(image, caption=caption)
+    st.image(image, caption=caption, use_column_width=True)
 
 def main():
     st.sidebar.title("Navegación")
@@ -194,12 +200,15 @@ def main():
     elif page == "GRU":
         model_page(load_gru_model, "Predicción de Retiros - GRU")
         
+    st.sidebar.write("### Notas:")
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
-    st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente el accuracy de modelos sensibles a la escala de las características, tales como el Kernel")
+    st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.")
+
+    st.sidebar.write("### Créditos:")
+    st.sidebar.write("Desarrollado por el equipo de Data Science.")
 
 if __name__ == "__main__":
     main()
-
 
 
 
