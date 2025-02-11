@@ -15,7 +15,7 @@ st.markdown(
     """
     <style>
     [data-testid="stSidebar"] {
-        background-color: rgb(148, 18, 59);
+        background-color: rgb(148, 180, 59);
     }
     </style>
     """,
