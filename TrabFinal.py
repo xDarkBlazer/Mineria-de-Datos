@@ -82,6 +82,24 @@ def model_page(model_loader, title):
     else:
         st.warning("Por favor, carga un archivo Excel para continuar.")
 
+def descriptive_page():
+    st.title("Descriptiva de los Datos")
+    st.write("Carga un Excel para ver la descriptiva de los datos.")
+
+    uploaded_file = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
+    if uploaded_file is not None:
+        try:
+            data = pd.read_excel(uploaded_file)
+            st.write("Datos cargados:")
+            st.write(data)
+
+            describe_data(data)
+        except Exception as e:
+            st.error(f"Error al procesar el archivo Excel: {e}")
+    else:
+        st.warning("Por favor, carga un archivo Excel para continuar.")
+
+
 def display_image_from_url(url, caption):
     response = requests.get(url)
     image = Image.open(BytesIO(response.content))
@@ -94,7 +112,7 @@ def main():
     if page == "Descripción del Problema":
         model_page(load_rnn_model, "Descripción del Problema")
     elif page == "Descriptiva de los Datos":
-        model_page(load_rnn_model, "Descriptiva de los Datos")
+        descriptive_page()
     elif page == "Dense":
         model_page(load_rnn_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
