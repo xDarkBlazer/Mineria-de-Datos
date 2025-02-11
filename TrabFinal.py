@@ -6,6 +6,7 @@ import requests
 from io import BytesIO
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def load_model():
     """Carga el modelo desde un archivo comprimido y verifica su integridad."""
@@ -39,6 +40,23 @@ def model_page(model_loader, title):
                     predictions = make_predictions(model, data)
                     st.write("Predicciones:")
                     st.write(predictions)
+                    
+                    # Generate Predictions
+                    y_pred = predictions  # Assuming predictions is the output of the model
+                    y_test = data.iloc[:, -1].values  # Assuming last column is the target variable
+
+                    # Plot actual vs predicted
+                    plt.figure(figsize=(12, 5))
+                    time = np.arange(len(y_test))
+                    plt.plot(time, y_test, label='Actual Retiro', linestyle='dashed', alpha=0.8)
+                    plt.plot(time, y_pred, label='RNN Prediction', alpha=0.8)
+
+                    plt.legend()
+                    plt.title("Time Series Predictions - RNN")
+                    plt.xlabel("Time Step")
+                    plt.ylabel("Retiro (Escalado)")
+                    plt.xlim(0, 80)
+                    st.pyplot(plt)
             else:
                 st.error("No se pudo cargar el modelo.")
         except Exception as e:
@@ -73,5 +91,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
