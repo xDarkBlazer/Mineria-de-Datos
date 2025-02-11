@@ -15,12 +15,14 @@ st.markdown(
     """
     <style>
     [data-testid="stSidebar"] {
-        background-color: rgb(148, 180, 59);
+        background-color: rgb(148, 18, 59);
+    }
+    [data-testid="stSidebar"] .css-1d391kg, [data-testid="stSidebar"] .css-18e3th9, [data-testid="stSidebar"] .css-1dp5vir {
+        color: white;
     }
     </style>
     """,
-    unsafe_allow_html=True
-)
+    unsafe_allow_html=True)
 
 # Encabezado principal
 # Añadir imagen como encabezado en todas las páginas
@@ -217,8 +219,7 @@ def main():
     st.sidebar.write("### Notas:")
     st.sidebar.write("El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.")
     st.sidebar.write("Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.")
-    st.sidebar.write("### Créditos:")
-    st.sidebar.write("Desarrollado por el equipo de Data Science.")
+    st.sidebar.write("Edwin Armando Torres Sánchez.")
 
 if __name__ == "__main__":
     main()
