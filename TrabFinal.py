@@ -73,8 +73,14 @@ def model_page(model_loader, title, reshape_data=False):
             st.write(data)
 
             if reshape_data:
-                # Reformatear los datos para asegurar la forma correcta solo si reshape_data es True
-                X = data.values.reshape(-1, 30)
+                # Verificar si el tamaño de los datos es compatible con el reshape
+                if data.size % 30 == 0:
+                    X = data.values.reshape(-1, 30)
+                else:
+                    # Si no es divisible por 30, redimensionar ignorando los últimos registros
+                    num_complete_batches = data.shape[0] // 30
+                    X = data.values[:num_complete_batches * 30].reshape(-1, 30)
+                    st.warning(f"Los datos han sido truncados para hacerlos compatibles con la forma esperada. Ahora tienen tamaño {X.shape}.")
             else:
                 X = data.values
 
@@ -87,7 +93,7 @@ def model_page(model_loader, title, reshape_data=False):
                     
                     # Generate Predictions
                     y_pred = predictions  # Assuming predictions is the output of the model
-                    y_test = data.iloc[:, -1].values  # Assuming last column is the target variable
+                    y_test = data.iloc[:len(y_pred), -1].values  # Ajustar y_test al tamaño de las predicciones
 
                     # Plot actual vs predicted
                     plt.figure(figsize=(12, 5))
