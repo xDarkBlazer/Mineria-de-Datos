@@ -31,13 +31,13 @@ def load_lstm_model():
         return None
 
 def load_gru_model():
-    """Carga el modelo LSTM desde un archivo comprimido y verifica su integridad."""
+    """Carga el modelo GRU desde un archivo comprimido y verifica su integridad."""
     try:
         with gzip.open('GRU.pkl.gz', 'rb') as f:
             model = pickle.load(f)
         return model
     except Exception as e:
-        st.error(f"Error al cargar el modelo LSTM: {e}")
+        st.error(f"Error al cargar el modelo GRU: {e}")
         return None
 
 def load_dense_model():
@@ -101,30 +101,50 @@ def model_page(model_loader, title, reshape_data=False):
             model = model_loader()
             if model is not None:
                 if st.button("Predecir datos"):
-                    predictions = make_predictions(model, X)
-                    st.write("Predicciones:")
-                    st.write(predictions)
-                    
-                    # Generate Predictions
-                    y_pred = predictions  # Assuming predictions is the output of the model
-                    y_test = data.iloc[:len(y_pred), -1].values  # Ajustar y_test al tamaño de las predicciones
+                    # Predicciones sobre los datos de entrenamiento
+                    predictions_train = make_predictions(model, X)
+                    st.write("Predicciones (Datos de Entrenamiento):")
+                    st.write(predictions_train)
 
-                    # Plot actual vs predicted
+                    # Plot actual vs predicted (Datos de Entrenamiento)
+                    y_test = data.iloc[:len(predictions_train), -1].values
                     plt.figure(figsize=(12, 5))
                     time = np.arange(len(y_test))
                     plt.plot(time, y_test, label='Actual Retiro', linestyle='dashed', alpha=0.8)
-                    plt.plot(time, y_pred, label='Model Prediction', alpha=0.8)
-
+                    plt.plot(time, predictions_train, label='Model Prediction', alpha=0.8)
                     plt.legend()
-                    plt.title(f"Time Series Predictions - {title}")
+                    plt.title(f"Time Series Predictions - {title} (Datos de Entrenamiento)")
                     plt.xlabel("Time Step")
                     plt.ylabel("Retiro (Escalado)")
-                    plt.xlim(0, 80)
+                    plt.xlim(0, len(y_test))
                     st.pyplot(plt)
-                    
+
+                    # Predicciones futuras (t+1 en adelante)
+                    future_predictions = []
+                    last_window = X[-1].reshape(1, -1)  # Usar la última ventana de datos para predecir
+                    for _ in range(10):  # Generar 10 predicciones futuras (ajustar según se requiera)
+                        next_pred = make_predictions(model, last_window)
+                        future_predictions.append(next_pred[0])
+                        last_window = np.roll(last_window, -1)
+                        last_window[0, -1] = next_pred
+
+                    st.write("Predicciones Futuras (t+1 en adelante):")
+                    st.write(future_predictions)
+
+                    # Plot future predictions
+                    plt.figure(figsize=(12, 5))
+                    future_time = np.arange(len(y_test), len(y_test) + len(future_predictions))
+                    plt.plot(time, y_test, label='Actual Retiro', linestyle='dashed', alpha=0.8)
+                    plt.plot(future_time, future_predictions, label='Future Prediction', alpha=0.8)
+                    plt.legend()
+                    plt.title(f"Time Series Predictions - {title} (Futuro)")
+                    plt.xlabel("Time Step")
+                    plt.ylabel("Retiro (Escalado)")
+                    st.pyplot(plt)
+
                     # Calculate and display metrics
-                    mae = mean_absolute_error(y_test, y_pred)
-                    mse = mean_squared_error(y_test, y_pred)
+                    mae = mean_absolute_error(y_test, predictions_train)
+                    mse = mean_squared_error(y_test, predictions_train)
 
                     st.write(f"**Mean Absolute Error (MAE):** {mae}")
                     st.write(f"**Mean Squared Error (MSE):** {mse}")
