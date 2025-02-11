@@ -115,7 +115,7 @@ def model_page(model_loader, title, reshape_data=False):
                     plt.legend()
                     plt.title(f"Time Series Predictions - {title} (Datos de Entrenamiento)")
                     plt.xlabel("Time Step")
-                    plt.ylabel("Retiro (Escalado)")
+                    plt.ylabel("Retiro")
                     plt.xlim(0, len(y_test))
                     st.pyplot(plt)
 
