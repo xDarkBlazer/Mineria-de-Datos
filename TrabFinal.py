@@ -6,7 +6,6 @@ import requests
 from io import BytesIO
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 def load_model():
     """Carga el modelo desde un archivo comprimido y verifica su integridad."""
