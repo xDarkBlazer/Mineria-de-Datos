@@ -204,22 +204,26 @@ def main():
     page = st.sidebar.selectbox("Elige un modelo", ["Descripción del Problema", "Descriptiva de los Datos", "Dense", "RNN", "LSTM", "GRU"])
 
     if page == "Descripción del Problema":
-        model_page(load_rnn_model, "Descripción del Problema")
+        st.sidebar.write("Por favor elija un modelo para predecir los retiros bancarios.")
+    
     elif page == "Descriptiva de los Datos":
         descriptive_page()
+    
     elif page == "Dense":
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 5, 'epochs': 6, 'num_units': 160, 'optimizer': 'rmsprop', 'activation': 'relu', 'batch_size': 96, 'learning_rate': 0.00014794817129905585}")
         model_page(load_dense_model, "Predicción de Retiros - Dense", reshape_data=True)
-        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 5, 'epochs': 6, 'num_units': 160, 'optimizer': 'rmsprop', 'activation': 'relu', 'batch_size': 96, 'learning_rate': 0.00014794817129905585}") 
+    
     elif page == "RNN":
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 3, 'epochs': 5, 'num_units': 80, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 80, 'learning_rate': 0.0001645624539394657}")
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
-        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 3, 'epochs': 5, 'num_units': 80, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 80, 'learning_rate': 0.0001645624539394657}") 
+    
     elif page == "LSTM":
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 5, 'num_units': 144, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 56, 'learning_rate': 0.00022336904639532176}")
         model_page(load_lstm_model, "Predicción de Retiros - LSTM")
-        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 5, 'num_units': 144, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 56, 'learning_rate': 0.00022336904639532176}") 
+    
     elif page == "GRU":
-        model_page(load_gru_model, "Predicción de Retiros - GRU")
-        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}") 
-
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
+        model_page(load_gru_model, 
         
 st.sidebar.write("### Notas:") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
