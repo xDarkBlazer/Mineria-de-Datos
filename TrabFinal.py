@@ -65,10 +65,6 @@ def model_page(model_loader, title):
 
                     st.write(f"**Mean Absolute Error (MAE):** {mae}")
                     st.write(f"**Mean Squared Error (MSE):** {mse}")
-
-                    # Display model hyperparameters
-                    st.write("**Hiperparámetros del modelo:**")
-                    st.write(model.get_params())
             else:
                 st.error("No se pudo cargar el modelo.")
         except Exception as e:
