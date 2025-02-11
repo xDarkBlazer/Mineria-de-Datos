@@ -29,6 +29,16 @@ def load_lstm_model():
         st.error(f"Error al cargar el modelo LSTM: {e}")
         return None
 
+def load_dense_model():
+    """Carga el modelo Dense desde un archivo comprimido y verifica su integridad."""
+    try:
+        with gzip.open('Dense.pkl.gz', 'rb') as f:
+            model = pickle.load(f)
+        return model
+    except Exception as e:
+        st.error(f"Error al cargar el modelo LSTM: {e}")
+        return None
+
 def make_predictions(model, data):
     """Realiza predicciones utilizando el modelo."""
     predictions = model.predict(data)
@@ -132,7 +142,7 @@ def main():
     elif page == "Descriptiva de los Datos":
         descriptive_page()
     elif page == "Dense":
-        model_page(load_rnn_model, "Predicción de Retiros - Dense")
+        model_page(load_dense_model, "Predicción de Retiros - Dense")
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
     elif page == "LSTM":
