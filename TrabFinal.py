@@ -7,6 +7,7 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 def load_rnn_model():
@@ -69,6 +70,12 @@ def describe_data(data):
     plt.figure()
     data.boxplot()
     plt.title("Boxplot de los Datos")
+    st.pyplot(plt)
+    
+    st.write("Gráfico de Violín de los Datos:")
+    plt.figure()
+    sns.violinplot(data=data)
+    plt.title("Gráfico de Violín de los Datos")
     st.pyplot(plt)
 
 def model_page(model_loader, title, reshape_data=False):
