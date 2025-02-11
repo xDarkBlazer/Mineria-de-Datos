@@ -201,7 +201,7 @@ def display_image_from_url(url, caption):
 
 def main():
     st.sidebar.title("Navegación")
-    page = st.sidebar.selectbox("Elige un modelo", ["Descripción del Problema", "Descriptiva de los Datos", "Dense", "RNN", "LSTM", "GRU"])
+    page = st.sidebar.selectbox("Elige un modelo", ["Descripción del Problema", "Descriptiva de los Datos", "Dense", "RNN", "LSTM", "GRU", "Conclusiones"])
 
     if page == "Descripción del Problema":
         st.sidebar.write("Por favor elija un modelo para predecir los retiros bancarios.")
@@ -224,6 +224,10 @@ def main():
         model_page(load_lstm_model, "Predicción de Retiros - LSTM")
     
     elif page == "GRU":
+        st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
+        model_page(load_gru_model , "Predicción de Retiros - GRU")
+
+    elif page == "Conclusiones":
         st.sidebar.write("Mejores hiperparámetros encontrados: {'depth': 2, 'epochs': 6, 'num_units': 160, 'optimizer': 'adam', 'activation': 'relu', 'batch_size': 64, 'learning_rate': 0.012659683585100143}")
         model_page(load_gru_model , "Predicción de Retiros - GRU")
         
