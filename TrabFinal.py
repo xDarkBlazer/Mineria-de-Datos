@@ -73,14 +73,11 @@ def model_page(model_loader, title, reshape_data=False):
             st.write(data)
 
             if reshape_data:
-                # Verificar si el tamaño de los datos es compatible con el reshape
-                if data.size % 30 == 0:
-                    X = data.values.reshape(-1, 30)
-                else:
-                    # Si no es divisible por 30, redimensionar ignorando los últimos registros
-                    num_complete_batches = data.shape[0] // 30
-                    X = data.values[:num_complete_batches * 30].reshape(-1, 30)
-                    st.warning(f"Los datos han sido truncados para hacerlos compatibles con la forma esperada. Ahora tienen tamaño {X.shape}.")
+                # Generar ventanas de 30 días solapadas
+                X = []
+                for i in range(len(data) - 30 + 1):
+                    X.append(data.values[i:i + 30])
+                X = np.array(X).reshape(-1, 30)
             else:
                 X = data.values
 
