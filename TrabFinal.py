@@ -221,8 +221,12 @@ st.sidebar.markdown("""
     .custom-text {
         color: white;
     }
+    .sidebar .sidebar-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
     </style>
-    ### Notas:
+    <div class="custom-text"><h3>Notas:</h3></div>
     <div class="custom-text">El mejor modelo fue un KernelRidge, este se comparó contra un modelo de ElasticNET y resultó siendo el mejor usando el método de GridSearch.</div>
     <div class="custom-text">Este modelo fue estandarizado con StandardScaler, con el fin de normalizar los datos restando la media y dividiendo por la desviación estándar de cada característica. Este procedimiento mejora considerablemente la precisión de modelos sensibles a la escala de las características, tales como el Kernel.</div>
     <div class="custom-text">Edwin Armando Torres Sánchez.</div>
