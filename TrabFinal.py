@@ -36,7 +36,7 @@ def load_dense_model():
             model = pickle.load(f)
         return model
     except Exception as e:
-        st.error(f"Error al cargar el modelo LSTM: {e}")
+        st.error(f"Error al cargar el modelo Dense: {e}")
         return None
 
 def make_predictions(model, data):
@@ -61,8 +61,7 @@ def describe_data(data):
     plt.title("Boxplot de los Datos")
     st.pyplot(plt)
 
-
-def model_page(model_loader, title):
+def model_page(model_loader, title, reshape_data=False):
     st.title(title)
     st.write("Carga un Excel para predecir los Retiros.")
 
@@ -73,10 +72,16 @@ def model_page(model_loader, title):
             st.write("Datos cargados:")
             st.write(data)
 
+            if reshape_data:
+                # Reformatear los datos para asegurar la forma correcta
+                X = data.values.reshape(-1, 30)
+            else:
+                X = data.values
+
             model = model_loader()
             if model is not None:
                 if st.button("Predecir datos"):
-                    predictions = make_predictions(model, data)
+                    predictions = make_predictions(model, X)
                     st.write("Predicciones:")
                     st.write(predictions)
                     
@@ -127,7 +132,6 @@ def descriptive_page():
     else:
         st.warning("Por favor, carga un archivo Excel para continuar.")
 
-
 def display_image_from_url(url, caption):
     response = requests.get(url)
     image = Image.open(BytesIO(response.content))
@@ -142,7 +146,7 @@ def main():
     elif page == "Descriptiva de los Datos":
         descriptive_page()
     elif page == "Dense":
-        model_page(load_dense_model, "Predicción de Retiros - Dense")
+        model_page(load_dense_model, "Predicción de Retiros - Dense", reshape_data=True)
     elif page == "RNN":
         model_page(load_rnn_model, "Predicción de Retiros - RNN")
     elif page == "LSTM":
@@ -153,6 +157,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
