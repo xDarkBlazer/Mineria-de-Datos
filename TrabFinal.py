@@ -15,7 +15,7 @@ st.markdown(
     """
     <style>
     [data-testid="stSidebar"] {
-        background-color: rgb(148, 18, 59);
+        background-color: rgb(148, 180, 59);
     }
     [data-testid="stSidebar"] .css-1d391kg, [data-testid="stSidebar"] .css-18e3th9, [data-testid="stSidebar"] .css-1dp5vir {
         color: white;
