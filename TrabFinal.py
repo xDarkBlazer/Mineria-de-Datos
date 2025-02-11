@@ -16,7 +16,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 st.set_page_config(page_title="Predicción de Retiros Bancarios", page_icon="🏦", layout="wide")
 # Añadir imagen como encabezado en todas las páginas
 imagen_path = "UNAL-Manizales.png"  # Reemplazar con la ruta correcta si es necesario
-st.image(imagen_path, width=300)
+st.image(imagen_path, width=150)
 st.title("📊 Predicción de Retiros Bancarios")
 st.markdown("### Un análisis detallado con modelos de Machine Learning")
 
