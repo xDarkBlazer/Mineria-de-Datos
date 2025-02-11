@@ -229,13 +229,13 @@ def main():
 
     elif page == "Conclusiones":
         imagen_path3 = "DENSED.PNG"  # Reemplazar con la ruta correcta si es necesario
-        st.image(imagen_path3, width=150)
+        st.image(imagen_path3, width=450)
         imagen_path4 = "RNND.PNG"  # Reemplazar con la ruta correcta si es necesario
-        st.image(imagen_path4, width=150)
+        st.image(imagen_path4, width=450)
         imagen_path5 = "LSTMD.PNG"  # Reemplazar con la ruta correcta si es necesario
-        st.image(imagen_path5, width=150)
+        st.image(imagen_path5, width=450)
         imagen_path6 = "GRUD.PNG"  # Reemplazar con la ruta correcta si es necesario
-        st.image(imagen_path6, width=150)
+        st.image(imagen_path6, width=450)
         
 st.sidebar.write("### Minería de Datos:") 
 st.sidebar.write("Edwin Armando Torres Sánchez.")
